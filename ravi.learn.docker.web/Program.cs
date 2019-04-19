@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore;
+﻿using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Logging;
+using ravi.learn.docker.web.Data;
+using ravi.learn.docker.web.Extensions;
 
 namespace ravi.learn.docker.web
 {
@@ -14,7 +9,8 @@ namespace ravi.learn.docker.web
     {
         public static void Main(string[] args)
         {
-            CreateWebHostBuilder(args).Build().Run();
+            CreateWebHostBuilder(args).Build()
+                    .MigrateDatabase<MagContext>().Run();
         }
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
