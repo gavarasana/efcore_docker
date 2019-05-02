@@ -29,10 +29,11 @@ namespace ravi.learn.docker.web
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
-            //services.AddDbContext<MagContext>(options =>
-            //        options.UseSqlServer(Configuration.GetConnectionString("MagsConnectionMSsql")));
             services.AddDbContext<MagContext>(options =>
-                    options.UseSqlite(Configuration.GetConnectionString("MagsConnectionSqlLite")));
+                    options.UseSqlServer(Configuration.GetConnectionString("MagsConnectionAzMsSql")));
+
+            //  services.AddDbContext<MagContext>(options =>
+            //          options.UseSqlite(Configuration.GetConnectionString("MagsConnectionSqlLite")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
