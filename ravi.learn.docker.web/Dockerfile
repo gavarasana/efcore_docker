@@ -3,6 +3,11 @@ WORKDIR /app
 EXPOSE 80
 EXPOSE 443
 
+ENV ConnectionStrings:MagsConnectionAzMsSql="Server={ENVSRV};Initial Catalog=Magazines;Persist Security Info=False;User ID={ENVDBID};Password={ENVDBPWD};MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30"
+#ENV DB_UserId=demoadmin
+#ENV DB_Pwd=(Chiru123)
+#ENV DB_Server=tcp:rgdemodbsql1.database.windows.net,1433
+
 FROM mcr.microsoft.com/dotnet/core/sdk:2.2-stretch AS build
 WORKDIR /src
 COPY ["ravi.learn.docker.web/ravi.learn.docker.web.csproj", "ravi.learn.docker.web/"]

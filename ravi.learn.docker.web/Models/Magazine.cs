@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace ravi.learn.docker.web.Models
+﻿namespace ravi.learn.docker.web.Models
 {
     public class Magazine
     {

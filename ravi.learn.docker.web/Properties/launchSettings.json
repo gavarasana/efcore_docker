@@ -22,6 +22,9 @@
       "launchBrowser": true,
       "launchUrl": "api/values",
       "environmentVariables": {
+        "DB_UserId1": "demoadmin",
+        "DB_Server1": "tcp:rgdemodbsql1.database.windows.net,1433",
+        "DB_Pwd1": "(Chiru123)",
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
       "applicationUrl": "https://localhost:5001;http://localhost:5000"

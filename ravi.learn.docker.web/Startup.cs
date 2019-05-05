@@ -1,15 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
 using Microsoft.EntityFrameworkCore;
 using ravi.learn.docker.web.Data;
 
@@ -29,8 +22,14 @@ namespace ravi.learn.docker.web
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
-            services.AddDbContext<MagContext>(options =>
-                    options.UseSqlServer(Configuration.GetConnectionString("MagsConnectionAzMsSql")));
+            var dbServer = Configuration["DB_Server"];
+            var dbPassword = Configuration["DB_Pwd"];
+            var dbUserId  = Configuration["DB_UserId"];
+
+            var connectionString = Configuration["ConnectionStrings:MagsConnectionAzMsSql"];
+
+            services.AddDbContext<MagContext>(options => options.UseSqlServer(connectionString.Replace("{ENVDBID}", dbUserId).Replace("{ENVDBPWD}", dbPassword).Replace("{ENVSRV}", dbServer)));
+                   //options.UseSqlServer(Configuration.GetConnectionString("MagsConnectionAzMsSql")));
 
             //  services.AddDbContext<MagContext>(options =>
             //          options.UseSqlite(Configuration.GetConnectionString("MagsConnectionSqlLite")));
